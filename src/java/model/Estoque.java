@@ -33,8 +33,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Estoque.findAll", query = "SELECT e FROM Estoque e")
     , @NamedQuery(name = "Estoque.findById", query = "SELECT e FROM Estoque e WHERE e.id = :id")
     , @NamedQuery(name = "Estoque.findByQuantidade", query = "SELECT e FROM Estoque e WHERE e.quantidade = :quantidade")
-    , @NamedQuery(name = "Estoque.findByCreatedIn", query = "SELECT e FROM Estoque e WHERE e.createdIn = :createdIn")
-    , @NamedQuery(name = "Estoque.findByUpdateOn", query = "SELECT e FROM Estoque e WHERE e.updateOn = :updateOn")})
+    , @NamedQuery(name = "Estoque.findByUpdateOn", query = "SELECT e FROM Estoque e WHERE e.updateOn = :updateOn")
+    , @NamedQuery(name = "Estoque.findByCreatedAt", query = "SELECT e FROM Estoque e WHERE e.createdAt = :createdAt")})
 public class Estoque implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,13 +47,12 @@ public class Estoque implements Serializable {
     @Column(name = "quantidade")
     private int quantidade;
     @Basic(optional = false)
-    @Column(name = "created_in")
-    @Temporal(TemporalType.DATE)
-    private Date createdIn;
-    @Basic(optional = false)
     @Column(name = "update_on")
     @Temporal(TemporalType.DATE)
     private Date updateOn;
+    @Column(name = "created_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
     @JoinColumn(name = "fk_carro", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Veiculo fkCarro;
@@ -65,10 +64,9 @@ public class Estoque implements Serializable {
         this.id = id;
     }
 
-    public Estoque(Integer id, int quantidade, Date createdIn, Date updateOn) {
+    public Estoque(Integer id, int quantidade, Date updateOn) {
         this.id = id;
         this.quantidade = quantidade;
-        this.createdIn = createdIn;
         this.updateOn = updateOn;
     }
 
@@ -88,20 +86,20 @@ public class Estoque implements Serializable {
         this.quantidade = quantidade;
     }
 
-    public Date getCreatedIn() {
-        return createdIn;
-    }
-
-    public void setCreatedIn(Date createdIn) {
-        this.createdIn = createdIn;
-    }
-
     public Date getUpdateOn() {
         return updateOn;
     }
 
     public void setUpdateOn(Date updateOn) {
         this.updateOn = updateOn;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Veiculo getFkCarro() {

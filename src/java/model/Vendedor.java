@@ -39,8 +39,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Vendedor.findByCpf", query = "SELECT v FROM Vendedor v WHERE v.cpf = :cpf")
     , @NamedQuery(name = "Vendedor.findByEndereco", query = "SELECT v FROM Vendedor v WHERE v.endereco = :endereco")
     , @NamedQuery(name = "Vendedor.findByTelefone", query = "SELECT v FROM Vendedor v WHERE v.telefone = :telefone")
-    , @NamedQuery(name = "Vendedor.findByCreatedIn", query = "SELECT v FROM Vendedor v WHERE v.createdIn = :createdIn")
-    , @NamedQuery(name = "Vendedor.findByUpdateOn", query = "SELECT v FROM Vendedor v WHERE v.updateOn = :updateOn")})
+    , @NamedQuery(name = "Vendedor.findByUpdateOn", query = "SELECT v FROM Vendedor v WHERE v.updateOn = :updateOn")
+    , @NamedQuery(name = "Vendedor.findByCreatedAt", query = "SELECT v FROM Vendedor v WHERE v.createdAt = :createdAt")})
 public class Vendedor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -64,13 +64,12 @@ public class Vendedor implements Serializable {
     @Column(name = "telefone")
     private String telefone;
     @Basic(optional = false)
-    @Column(name = "created_in")
-    @Temporal(TemporalType.DATE)
-    private Date createdIn;
-    @Basic(optional = false)
     @Column(name = "update_on")
     @Temporal(TemporalType.DATE)
     private Date updateOn;
+    @Column(name = "created_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkVendedorId")
     private Collection<Pedido> pedidoCollection;
 
@@ -81,13 +80,12 @@ public class Vendedor implements Serializable {
         this.id = id;
     }
 
-    public Vendedor(Integer id, String nome, String email, String endereco, String telefone, Date createdIn, Date updateOn) {
+    public Vendedor(Integer id, String nome, String email, String endereco, String telefone, Date updateOn) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.endereco = endereco;
         this.telefone = telefone;
-        this.createdIn = createdIn;
         this.updateOn = updateOn;
     }
 
@@ -139,20 +137,20 @@ public class Vendedor implements Serializable {
         this.telefone = telefone;
     }
 
-    public Date getCreatedIn() {
-        return createdIn;
-    }
-
-    public void setCreatedIn(Date createdIn) {
-        this.createdIn = createdIn;
-    }
-
     public Date getUpdateOn() {
         return updateOn;
     }
 
     public void setUpdateOn(Date updateOn) {
         this.updateOn = updateOn;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     @XmlTransient

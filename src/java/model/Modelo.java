@@ -35,8 +35,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Modelo.findAll", query = "SELECT m FROM Modelo m")
     , @NamedQuery(name = "Modelo.findById", query = "SELECT m FROM Modelo m WHERE m.id = :id")
     , @NamedQuery(name = "Modelo.findByDescricao", query = "SELECT m FROM Modelo m WHERE m.descricao = :descricao")
-    , @NamedQuery(name = "Modelo.findByCreatedIn", query = "SELECT m FROM Modelo m WHERE m.createdIn = :createdIn")
-    , @NamedQuery(name = "Modelo.findByUpdateOn", query = "SELECT m FROM Modelo m WHERE m.updateOn = :updateOn")})
+    , @NamedQuery(name = "Modelo.findByUpdateOn", query = "SELECT m FROM Modelo m WHERE m.updateOn = :updateOn")
+    , @NamedQuery(name = "Modelo.findByCreatedAt", query = "SELECT m FROM Modelo m WHERE m.createdAt = :createdAt")})
 public class Modelo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,13 +49,12 @@ public class Modelo implements Serializable {
     @Column(name = "descricao")
     private String descricao;
     @Basic(optional = false)
-    @Column(name = "created_in")
-    @Temporal(TemporalType.DATE)
-    private Date createdIn;
-    @Basic(optional = false)
     @Column(name = "update_on")
     @Temporal(TemporalType.DATE)
     private Date updateOn;
+    @Column(name = "created_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkModelo")
     private Collection<Veiculo> veiculoCollection;
 
@@ -66,10 +65,9 @@ public class Modelo implements Serializable {
         this.id = id;
     }
 
-    public Modelo(Integer id, String descricao, Date createdIn, Date updateOn) {
+    public Modelo(Integer id, String descricao, Date updateOn) {
         this.id = id;
         this.descricao = descricao;
-        this.createdIn = createdIn;
         this.updateOn = updateOn;
     }
 
@@ -89,20 +87,20 @@ public class Modelo implements Serializable {
         this.descricao = descricao;
     }
 
-    public Date getCreatedIn() {
-        return createdIn;
-    }
-
-    public void setCreatedIn(Date createdIn) {
-        this.createdIn = createdIn;
-    }
-
     public Date getUpdateOn() {
         return updateOn;
     }
 
     public void setUpdateOn(Date updateOn) {
         this.updateOn = updateOn;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     @XmlTransient

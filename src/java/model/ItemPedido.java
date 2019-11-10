@@ -38,8 +38,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "ItemPedido.findAll", query = "SELECT i FROM ItemPedido i")
     , @NamedQuery(name = "ItemPedido.findById", query = "SELECT i FROM ItemPedido i WHERE i.id = :id")
     , @NamedQuery(name = "ItemPedido.findByValorItem", query = "SELECT i FROM ItemPedido i WHERE i.valorItem = :valorItem")
-    , @NamedQuery(name = "ItemPedido.findByCreatedIn", query = "SELECT i FROM ItemPedido i WHERE i.createdIn = :createdIn")
-    , @NamedQuery(name = "ItemPedido.findByUpdateOn", query = "SELECT i FROM ItemPedido i WHERE i.updateOn = :updateOn")})
+    , @NamedQuery(name = "ItemPedido.findByUpdateOn", query = "SELECT i FROM ItemPedido i WHERE i.updateOn = :updateOn")
+    , @NamedQuery(name = "ItemPedido.findByCreatedAt", query = "SELECT i FROM ItemPedido i WHERE i.createdAt = :createdAt")})
 public class ItemPedido implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,13 +53,12 @@ public class ItemPedido implements Serializable {
     @Column(name = "valor_item")
     private BigDecimal valorItem;
     @Basic(optional = false)
-    @Column(name = "created_in")
-    @Temporal(TemporalType.DATE)
-    private Date createdIn;
-    @Basic(optional = false)
     @Column(name = "update_on")
     @Temporal(TemporalType.DATE)
     private Date updateOn;
+    @Column(name = "created_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
     @JoinColumn(name = "fk_pedido_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Pedido fkPedidoId;
@@ -76,10 +75,9 @@ public class ItemPedido implements Serializable {
         this.id = id;
     }
 
-    public ItemPedido(Integer id, BigDecimal valorItem, Date createdIn, Date updateOn) {
+    public ItemPedido(Integer id, BigDecimal valorItem, Date updateOn) {
         this.id = id;
         this.valorItem = valorItem;
-        this.createdIn = createdIn;
         this.updateOn = updateOn;
     }
 
@@ -99,20 +97,20 @@ public class ItemPedido implements Serializable {
         this.valorItem = valorItem;
     }
 
-    public Date getCreatedIn() {
-        return createdIn;
-    }
-
-    public void setCreatedIn(Date createdIn) {
-        this.createdIn = createdIn;
-    }
-
     public Date getUpdateOn() {
         return updateOn;
     }
 
     public void setUpdateOn(Date updateOn) {
         this.updateOn = updateOn;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Pedido getFkPedidoId() {

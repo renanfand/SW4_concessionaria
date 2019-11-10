@@ -40,8 +40,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Pedido.findByDtPedido", query = "SELECT p FROM Pedido p WHERE p.dtPedido = :dtPedido")
     , @NamedQuery(name = "Pedido.findByValorTotal", query = "SELECT p FROM Pedido p WHERE p.valorTotal = :valorTotal")
     , @NamedQuery(name = "Pedido.findByQuantidade", query = "SELECT p FROM Pedido p WHERE p.quantidade = :quantidade")
-    , @NamedQuery(name = "Pedido.findByCreatedIn", query = "SELECT p FROM Pedido p WHERE p.createdIn = :createdIn")
-    , @NamedQuery(name = "Pedido.findByUpdateOn", query = "SELECT p FROM Pedido p WHERE p.updateOn = :updateOn")})
+    , @NamedQuery(name = "Pedido.findByUpdateOn", query = "SELECT p FROM Pedido p WHERE p.updateOn = :updateOn")
+    , @NamedQuery(name = "Pedido.findByCreatedAt", query = "SELECT p FROM Pedido p WHERE p.createdAt = :createdAt")})
 public class Pedido implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -62,13 +62,12 @@ public class Pedido implements Serializable {
     @Column(name = "quantidade")
     private int quantidade;
     @Basic(optional = false)
-    @Column(name = "created_in")
-    @Temporal(TemporalType.DATE)
-    private Date createdIn;
-    @Basic(optional = false)
     @Column(name = "update_on")
     @Temporal(TemporalType.DATE)
     private Date updateOn;
+    @Column(name = "created_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkPedidoId")
     private Collection<ItemPedido> itemPedidoCollection;
     @JoinColumn(name = "fk_cliente_id", referencedColumnName = "id")
@@ -88,12 +87,11 @@ public class Pedido implements Serializable {
         this.id = id;
     }
 
-    public Pedido(Integer id, Date dtPedido, BigDecimal valorTotal, int quantidade, Date createdIn, Date updateOn) {
+    public Pedido(Integer id, Date dtPedido, BigDecimal valorTotal, int quantidade, Date updateOn) {
         this.id = id;
         this.dtPedido = dtPedido;
         this.valorTotal = valorTotal;
         this.quantidade = quantidade;
-        this.createdIn = createdIn;
         this.updateOn = updateOn;
     }
 
@@ -129,20 +127,20 @@ public class Pedido implements Serializable {
         this.quantidade = quantidade;
     }
 
-    public Date getCreatedIn() {
-        return createdIn;
-    }
-
-    public void setCreatedIn(Date createdIn) {
-        this.createdIn = createdIn;
-    }
-
     public Date getUpdateOn() {
         return updateOn;
     }
 
     public void setUpdateOn(Date updateOn) {
         this.updateOn = updateOn;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     @XmlTransient

@@ -35,8 +35,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "TipoVeiculo.findAll", query = "SELECT t FROM TipoVeiculo t")
     , @NamedQuery(name = "TipoVeiculo.findById", query = "SELECT t FROM TipoVeiculo t WHERE t.id = :id")
     , @NamedQuery(name = "TipoVeiculo.findByDescricao", query = "SELECT t FROM TipoVeiculo t WHERE t.descricao = :descricao")
-    , @NamedQuery(name = "TipoVeiculo.findByCreatedIn", query = "SELECT t FROM TipoVeiculo t WHERE t.createdIn = :createdIn")
-    , @NamedQuery(name = "TipoVeiculo.findByUpdateOn", query = "SELECT t FROM TipoVeiculo t WHERE t.updateOn = :updateOn")})
+    , @NamedQuery(name = "TipoVeiculo.findByUpdateOn", query = "SELECT t FROM TipoVeiculo t WHERE t.updateOn = :updateOn")
+    , @NamedQuery(name = "TipoVeiculo.findByCreatedAt", query = "SELECT t FROM TipoVeiculo t WHERE t.createdAt = :createdAt")})
 public class TipoVeiculo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,13 +49,12 @@ public class TipoVeiculo implements Serializable {
     @Column(name = "descricao")
     private String descricao;
     @Basic(optional = false)
-    @Column(name = "created_in")
-    @Temporal(TemporalType.DATE)
-    private Date createdIn;
-    @Basic(optional = false)
     @Column(name = "update_on")
     @Temporal(TemporalType.DATE)
     private Date updateOn;
+    @Column(name = "created_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkTipoVeiculo")
     private Collection<Veiculo> veiculoCollection;
 
@@ -66,10 +65,9 @@ public class TipoVeiculo implements Serializable {
         this.id = id;
     }
 
-    public TipoVeiculo(Integer id, String descricao, Date createdIn, Date updateOn) {
+    public TipoVeiculo(Integer id, String descricao, Date updateOn) {
         this.id = id;
         this.descricao = descricao;
-        this.createdIn = createdIn;
         this.updateOn = updateOn;
     }
 
@@ -89,20 +87,20 @@ public class TipoVeiculo implements Serializable {
         this.descricao = descricao;
     }
 
-    public Date getCreatedIn() {
-        return createdIn;
-    }
-
-    public void setCreatedIn(Date createdIn) {
-        this.createdIn = createdIn;
-    }
-
     public Date getUpdateOn() {
         return updateOn;
     }
 
     public void setUpdateOn(Date updateOn) {
         this.updateOn = updateOn;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     @XmlTransient
