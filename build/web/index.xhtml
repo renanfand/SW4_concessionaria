@@ -6,27 +6,14 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Inicial</title>
+        <h:outputStylesheet library="css" name="style.css" />
     </h:head>
     <h:body>
-        <h1>Lista de clientes</h1>
-        <p:dataTable var="car" value="#{dtBasicView.cars}">
-            <p:column headerText="Id">
-                <h:outputText value="#{car.id}" />
-            </p:column>
-
-            <p:column headerText="Ano">
-                <h:outputText value="#{car.ano}" />
-            </p:column>
-
-            <p:column headerText="Marca">
-                <h:outputText value="#{car.marca}" />
-            </p:column>
-
-            <p:column headerText="Cor">
-                <h:outputText value="#{car.cor}" />
-            </p:column>
-        </p:dataTable>
-
+        <h1 class="title">My garage, My rules!</h1>
+        <h:form>            
+            <h:commandButton action="/modelo/modelo_home" value="Modelo"/>
+        </h:form>
+        
     </h:body>
 </html>
 

@@ -6,9 +6,12 @@
         <property name="portNumber" value="5432"/>
         <property name="databaseName" value="concessionaria"/>
         <property name="User" value="renan"/>
-        <property name="Password" value=""/>
+        <property name="Password" value="123"/>
         <property name="URL" value="jdbc:postgresql://localhost:5432/concessionaria"/>
         <property name="driverClass" value="org.postgresql.Driver"/>
     </jdbc-connection-pool>
+    <jdbc-resource enabled="true" jndi-name="java:app/concessionaria" object-type="user" pool-name="post-gre-sql_concessionaria_renanPool"/>
+    <jdbc-resource enabled="true" jndi-name="java:app/concessionaria" object-type="user" pool-name="post-gre-sql_concessionaria_renanPool"/>
+    <jdbc-resource enabled="true" jndi-name="java:app/concessionaria2" object-type="user" pool-name="post-gre-sql_concessionaria_renanPool"/>
     <jdbc-resource enabled="true" jndi-name="java:app/concessionaria" object-type="user" pool-name="post-gre-sql_concessionaria_renanPool"/>
 </resources>

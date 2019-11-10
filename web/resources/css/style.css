@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap');
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10/11/2019, 03:21:15
+    Author     : renan
+*/
+
+.fonte {
+    font-size: 14px !important;
+    font-weight: 600;
+}
+
+.back_none {
+    background: none;
+}
+
+.bord_radius {
+    border-radius: 15px;
+}
+
+.border_blue {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-radius: 0;
+    border-bottom: 4px solid;
+}
+
+.border_red {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-radius: 0;
+    border-bottom: 4px solid;
+}
+
+.border_green {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-radius: 0;
+    border-bottom: 4px solid;
+}
+
+.background_red {
+    background: #DB4437;
+}
+
+.color_red {
+    color: #DB4437;
+}
+
+.background_blue {
+    background: #4285F4;
+}
+
+.color_blue {
+    color: #4285F4;
+}
+
+.background_green {
+    background: #0F9D58;
+}
+
+.color_green {
+    color: #0F9D58;
+}
+
+.color_white {
+    color: white;
+}
+
+.title {
+    font-size: 40px;
+    font-family: 'Open Sans', sans-serif;
+    color:#464646;
+    font-weight: bold;
+    text-align: center;
+}
+
+tr {
+    border: 1px solid #d7d7d7 !important;
+}
+
+th {
+    border: 1px solid #d7d7d7 !important;
+    background: #fff !important;
+    padding: 10px 10px !important;
+    color: #777 !important;
+}
+.ui-datatable-odd {
+    background: none repeat scroll 0 0 #f9f9f9 !important;
+}
+.padd_btn {
+    padding: 10px 15px;
+    margin-left: 2px;
+    cursor: pointer;
+}
